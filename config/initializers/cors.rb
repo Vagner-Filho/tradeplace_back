@@ -16,11 +16,11 @@
 # end
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
     allow do
-      origins 'http://127.0.0.1:5173'  # Substitua com o domínio correto da sua aplicação frontend
+      origins 'http://127.0.0.1:5173', 'http://localhost:5173'  # Substitua com o domínio correto da sua aplicação frontend
       resource '*',
         headers: :any,
         methods: [:get, :post, :options, :delete, :put],
-        expose: ['Access-Control-Allow-Origin']
+        expose: ['Access-Control-Allow-Origin', 'Access-Control-Allow-Methods'] 
     end
   end
   
