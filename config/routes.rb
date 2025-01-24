@@ -12,3 +12,13 @@
 Rails.application.routes.draw do
   resources :products, only: [:index, :show, :create, :update, :destroy]
 end
+
+Rails.application.routes.draw do
+  # Outras rotas...
+
+  # Rota para criar um usuário
+  post 'users', to: 'users#create'
+
+  # Rota para editar um usuário
+  put 'users/:id', to: 'users#update'
+end

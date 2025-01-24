@@ -10,17 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_29_072051) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_24_010226) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "products", force: :cascade do |t|
-    t.string "product_img"
-    t.string "product_name"
-    t.decimal "rating_value"
-    t.decimal "product_value"
-    t.integer "qty_available"
-    t.integer "qty_sold"
+  create_table "addresses", force: :cascade do |t|
+    t.string "street"
+    t.string "number"
+    t.string "neighborhood"
+    t.integer "cep"
+    t.string "complement"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", id: :serial, force: :cascade do |t|
+    t.string "product_img", limit: 255, null: false
+    t.string "product_name", limit: 255, null: false
+    t.decimal "rating_value", precision: 10, scale: 2, null: false
+    t.decimal "product_value", precision: 10, scale: 2, null: false
+    t.integer "qty_available", null: false
+    t.integer "qty_sold", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.string "phone"
+    t.integer "address_id"
+    t.string "user_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
