@@ -34,7 +34,14 @@ module TradeplaceBack
         resource '*',
           headers: :any,
           methods: [:get, :post, :put, :patch, :delete, :options, :head],
-          expose: ['Access-Control-Allow-Origin']
+          expose: ['Access-Control-Allow-Origin', 'Access-Control-Allow-Methods'] 
+      end
+    end
+
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:options]
       end
     end
   end
